@@ -8,7 +8,7 @@ export const MainLayout = ({ children }: Properties) => {
         <div className="bg-slate-700 flex-grow">
 
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <Logo />
+                <Logo showMotto className="my-5" />
 
                 <main className="bg-slate-500 ">
                     {children}

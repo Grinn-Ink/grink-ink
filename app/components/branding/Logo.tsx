@@ -3,7 +3,9 @@ import { joinCss } from '../../utilities/css';
 type LogoSize = 'sm' | 'md' | 'lg';
 
 interface Properties {
+    className?: string;
     size?: LogoSize;
+    showMotto?: boolean;
 }
 
 function getSize(size: LogoSize) {
@@ -14,16 +16,26 @@ function getSize(size: LogoSize) {
     }
 }
 
-export const Logo = ({ size = 'md' }: Properties) => {
-    const css = joinCss(
+export const Logo = ({ className, size = 'md', showMotto }: Properties) => {
+    const outerCss = joinCss(
+        'text-center inline-block',
+        className
+    );
+
+    const logoCss = joinCss(
         'text-white font-lokki-reddy',
         getSize(size)
     );
 
     return (
-        <div className={css}>
-            <span className="text-primary">grinn</span>
-            <span className="text-secondary">ink</span>
+        <div className={outerCss}>
+            <div className={logoCss}>
+                <span className="text-primary">grinn</span>
+                <span className="text-secondary">ink</span>
+            </div>
+            {showMotto && (
+                <span className="text-gray-300">Comics, cartoons, art, oh my!</span>
+            )}
         </div>
     );
 };

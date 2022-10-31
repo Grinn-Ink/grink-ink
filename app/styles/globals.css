@@ -9,3 +9,7 @@ body,
 #__next {
     @apply flex flex-col flex-grow min-h-full;
 }
+
+.font-lokki-reddit {
+    line-height: initial;
+}
