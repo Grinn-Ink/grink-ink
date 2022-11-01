@@ -12,8 +12,44 @@ datasource db {
 
 model Series {
     id          Int         @id @default(sequence())
-    name        String      @unique
+    title       String      @unique
+    description String
+    coverUrl    String
+    status      Boolean     @default(false)
+    tags        String[]
+    slug        String      @unique
+    authors     Author[]
+    issues      Issue[]
     createdAt   DateTime    @default(now())
     updatedAt   DateTime    @default(now())
-    publishedAt DateTime    @default(now())
+    publishedAt DateTime?   @default(now())
+}
+
+model Issue {
+    id          Int         @id @default(sequence())
+    title       String
+    description String
+    imageUrl    String
+    status      Boolean     @default(false)
+    order       Float
+    tags        String[]
+    slug        String      @unique
+    authors     Author[]
+    series      Series      @relation(fields: [seriesId], references: [id])
+    seriesId    Int
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @default(now())
+    publishedAt DateTime?   @default(now())
+}
+
+model Author {
+    id          Int         @id @default(sequence())
+    name        String
+    about       String
+    profileUrl  String?
+    slug        String      @unique
+    series      Series[]
+    issues      Issue[]
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @default(now())
 }
