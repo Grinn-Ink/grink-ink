@@ -3,6 +3,7 @@ export * from './addIssueAuthor';
 export * from './deleteIssue';
 export * from './editIssue';
 export * from './findIssue';
+export * from './findLatestIssue';
 export * from './getAllIssuesBySeries';
 export * from './getIssueForEdit';
 export * from './listIssuesBySeries';
