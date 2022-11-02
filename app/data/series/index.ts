@@ -11,3 +11,5 @@ export * from './publishSeries';
 export * from './removeSeriesAuthor';
 export * from './searchSeries';
 export * from './unpublishSeries';
+
+export * from './types';

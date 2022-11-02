@@ -15,11 +15,6 @@ export async function findLatestSeries() {
             coverUrl: true,
             description: true,
             id: true,
-            issues: {
-                select: {
-                    _count: true
-                }
-            },
             publishedAt: true,
             slug: true,
             tags: true,

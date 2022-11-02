@@ -1,5 +1,6 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { NextPage } from 'next';
+import { AdminLayout } from '../../components';
 
 interface Properties {
 
@@ -7,12 +8,12 @@ interface Properties {
 
 const AdminHome: NextPage<Properties> = ({ }: Properties) => {
     return (
-        <>
-            <h1>Admin</h1>
-        </>
+        <AdminLayout>
+            <p className="italic">Quiet as the grave...</p>
+        </AdminLayout>
     );
 };
 
 export const getServerSideProps = withPageAuthRequired();
 
-export default AdminHome
+export default AdminHome;

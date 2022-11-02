@@ -11,3 +11,5 @@ export * from './publishIssue';
 export * from './removeIssueAuthor';
 export * from './searchIssues';
 export * from './unpublishIssue';
+
+export * from './types';
