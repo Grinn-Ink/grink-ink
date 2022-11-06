@@ -5,7 +5,7 @@ export async function writeCache(key: string, value: any) {
             headers: {
                 'content-type': 'application/json'
             },
-            method: 'POST'
+            method: 'PUT'
         });
     } catch (error) {
         console.error('Failed to retrieve cache');
