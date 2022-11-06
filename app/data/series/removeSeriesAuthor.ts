@@ -1,5 +1,5 @@
 import { Author, Series } from '@prisma/client';
-import { getDb } from '../client';
+import { getDb } from '../getDb';
 
 export async function removeSeriesAuthor(series: Series, author: Author) {
     const db = getDb();

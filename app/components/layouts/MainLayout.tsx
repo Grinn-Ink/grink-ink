@@ -1,3 +1,4 @@
+import { useUser } from '@auth0/nextjs-auth0';
 import Head from 'next/head';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
@@ -6,6 +7,8 @@ import { Logo } from '../branding';
 type Properties = PropsWithChildren<{}>;
 
 export const MainLayout = ({ children }: Properties) => {
+    const { error, isLoading, user} = useUser();
+
     return (
         <div className="bg-slate-700 flex-grow">
             <Head>
@@ -22,12 +25,14 @@ export const MainLayout = ({ children }: Properties) => {
                         <Logo showMotto className="my-5 border-b border-b-4 rounded-full py-5 px-6 border-b-slate-600" />
                     </Link>
 
-                    <Link
-                        href="/admin"
-                        className="ml-auto bg-slate-900 px-4 py-2 rounded-md text-white hover:bg-slate-800 transition duration-150"
-                    >
-                        Manage
-                    </Link>
+                    {!isLoading && !error && user && (
+                        <Link
+                            href="/admin"
+                            className="ml-auto bg-slate-900 px-4 py-2 rounded-md text-white hover:bg-slate-800 transition duration-150"
+                        >
+                            Manage
+                        </Link>
+                    )}
                 </header>
 
                 <main className="bg-slate-500 p-8 rounded">

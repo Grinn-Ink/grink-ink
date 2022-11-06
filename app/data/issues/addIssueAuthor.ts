@@ -1,5 +1,5 @@
 import { Author, Issue } from '@prisma/client';
-import { getDb } from '../client';
+import { getDb } from '../getDb';
 
 export async function addIssueAuthor(issue: Issue, author: Author) {
     const db = getDb();

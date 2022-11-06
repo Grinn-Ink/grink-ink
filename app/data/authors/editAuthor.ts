@@ -1,21 +1,26 @@
 import { Author } from '@prisma/client';
-import { getDb } from '../client';
+import { deleteCache } from '../caching';
+import { getDb } from '../getDb';
 
 export async function editAuthor(id: number, {
     about,
     name,
-    profileUrl,
-    slug
+    profilePic,
+    slug,
+    website
 }: Author) {
     const db = getDb();
+
+    await deleteCache(`/authors/${id}`);
 
     return await db.author.update({
         data: {
             about,
             name,
-            profileUrl,
+            profilePic,
             slug,
-            updatedAt: new Date()
+            updatedAt: new Date(),
+            website
         },
         where: {
             id

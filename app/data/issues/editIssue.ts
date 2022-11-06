@@ -1,5 +1,5 @@
 import { Issue } from '@prisma/client';
-import { getDb } from '../client';
+import { getDb } from '../getDb';
 
 export async function editIssue(id: number, {
     description,

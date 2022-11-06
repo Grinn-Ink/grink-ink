@@ -1,4 +1,4 @@
-import { getDb } from '../client';
+import { getDb } from '../getDb';
 
 export async function findIssue(id: number) {
     const db = getDb();
@@ -9,7 +9,7 @@ export async function findIssue(id: number) {
                 select: {
                     id: true,
                     name: true,
-                    profileUrl: true
+                    profilePic: true
                 }
             },
             description: true,

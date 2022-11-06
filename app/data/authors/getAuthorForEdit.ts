@@ -1,4 +1,4 @@
-import { getDb } from '../client';
+import { getDb } from '../getDb';
 
 export async function getAuthorForEdit(id: number) {
     const db = getDb();
@@ -8,8 +8,9 @@ export async function getAuthorForEdit(id: number) {
             id: true,
             about: true,
             name: true,
-            profileUrl: true,
-            slug: true
+            profilePic: true,
+            slug: true,
+            website: true
         },
         where: {
             id

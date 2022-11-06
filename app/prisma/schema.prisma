@@ -53,7 +53,8 @@ model Author {
     id          Int         @id @default(sequence())
     name        String
     about       String
-    profileUrl  String?
+    profilePic  String?
+    website     String?
     slug        String      @unique
     series      Series[]
     issues      Issue[]

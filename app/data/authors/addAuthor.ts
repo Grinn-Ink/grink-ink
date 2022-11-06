@@ -1,18 +1,27 @@
 import { Author } from '@prisma/client';
-import { getDb } from '../client';
+import { deleteCache, writeCache } from '../caching';
+import { getDb } from '../getDb';
 
 export async function addAuthor({
     about,
     name,
-    profileUrl
+    profilePic,
+    website,
+    slug
 }: Author) {
     const db = getDb();
 
-    return await db.author.create({
+    const author = await db.author.create({
         data: {
             about,
             name,
-            profileUrl
+            profilePic,
+            slug,
+            website
         }
     });
+
+    await deleteCache('/authors');
+
+    return author;
 }

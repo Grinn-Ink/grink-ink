@@ -1,4 +1,4 @@
-import { getDb } from '../client';
+import { getDb } from '../getDb';
 
 export async function findLatestSeries() {
     const db = getDb();
@@ -9,7 +9,7 @@ export async function findLatestSeries() {
                 select: {
                     id: true,
                     name: true,
-                    profileUrl: true,
+                    profilePic: true,
                 }
             },
             coverUrl: true,

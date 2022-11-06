@@ -1,4 +1,4 @@
-import { getDb } from '../client';
+import { getDb } from '../getDb';
 
 export async function getAllIssuesBySeries(seriesId: number) {
     const db = getDb();

@@ -1,15 +1,22 @@
-import { getDb } from '../client';
+import { readCache, writeCache } from '../caching';
+import { getDb } from '../getDb';
+import { Author } from './types';
 
 export async function findAuthor(id: number) {
+    const cachedAuthor = await readCache<Author>('/authors');
+
+    if (cachedAuthor) return cachedAuthor;
+
     const db = getDb();
 
-    return await db.author.findFirst({
+    const author = await db.author.findFirst({
         select: {
             id: true,
             about: true,
             name: true,
-            profileUrl: true,
+            profilePic: true,
             slug: true,
+            website: true,
             series: {
                 select: {
                     coverUrl: true,
@@ -25,4 +32,8 @@ export async function findAuthor(id: number) {
             id
         }
     });
+
+    await writeCache(`/authors/${id}`, author);
+
+    return author;
 }

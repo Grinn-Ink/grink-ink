@@ -1,4 +1,4 @@
-import { getDb } from '../client';
+import { getDb } from '../getDb';
 
 export async function unpublishIssue(id: number) {
     const db = getDb();
