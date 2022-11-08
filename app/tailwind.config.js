@@ -4,6 +4,7 @@ module.exports = {
         './pages/**/*.{js,ts,jsx,tsx}',
         './components/**/*.{js,ts,jsx,tsx}'
     ],
+    plugins: [],
     theme: {
         extend: {
             colors: {
@@ -14,6 +15,5 @@ module.exports = {
                 'lokki-reddy': ['Lakki Reddy', 'cursive']
             }
         },
-    },
-    plugins: [],
+    }
 };
