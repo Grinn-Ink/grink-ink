@@ -13,7 +13,7 @@ const handler: NextApiHandler = async (request: NextApiRequest, response: NextAp
 
     await addAuthor(model);
 
-    response.redirect('/admin/authors').send();
+    response.redirect('/admin/authors').send(null);
 };
 
 export default withApiAuthRequired(handler);
