@@ -37,24 +37,28 @@ export const Table = ({ basePath, columns, data, description, headings, id, show
                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                         <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                             <table className="min-w-full divide-y divide-gray-300">
-                                <thead className="bg-slate-400">
-                                    <tr>
-                                        {headings.map(heading => (
-                                            <th key={heading} scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                {heading}
-                                            </th>
-                                        ))}
+                                {headings && (
+                                    <thead className="bg-slate-400">
+                                        <tr>
+                                            {headings.map(heading => (
+                                                <th key={heading} scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    {heading}
+                                                </th>
+                                            ))}
 
-                                        {basePath && (
-                                            <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                <span className="sr-only">Edit</span>
-                                            </th>
-                                        )}
-                                    </tr>
-                                </thead>
+                                            {basePath && (
+                                                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                                    <span className="sr-only">Details</span>
+                                                    <span className="sr-only">Edit</span>
+                                                </th>
+                                            )}
+                                        </tr>
+                                    </thead>
+                                )}
+
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                    {data.map(row => (
-                                        <tr key={row[id]}>
+                                    {data && data.map((row, index) => (
+                                        <tr key={index}>
                                             {columns.map(column => (
                                                 <td key={column} className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {row[column] || (showDashForEmpty ? '-' : '')}
@@ -63,6 +67,10 @@ export const Table = ({ basePath, columns, data, description, headings, id, show
 
                                             {basePath && (
                                                 <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                    <Link href={basePath + `/${row[id]}/details`} className="text-slate-600 hover:text-slate-900 mr-4">
+                                                        Details
+                                                    </Link>
+
                                                     <Link href={basePath + `/${row[id]}/edit`} className="text-slate-600 hover:text-slate-900">
                                                         Edit
                                                     </Link>

@@ -6,3 +6,5 @@ export type Series = Partial<SeriesModel & {
     authors: Author[];
     issues: Issue[];
 }>;
+
+export type NewSeries = Pick<SeriesModel, 'coverUrl' | 'description' | 'slug' | 'status' | 'tags' | 'title'>

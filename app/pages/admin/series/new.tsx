@@ -1,20 +1,21 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { NextPage } from 'next';
-import { AdminLayout, Heading, Input, TextArea } from '../../../components';
+import { AdminLayout, CheckBox, Heading, Input, TextArea } from '../../../components';
 
 export const getServerSideProps = withPageAuthRequired();
 
-const NewAuthor: NextPage = () => {
+const NewSeries: NextPage = () => {
     return (
         <AdminLayout>
-            <Heading size="3">New Author</Heading>
+            <Heading size="3">New Series</Heading>
 
-            <form action="/api/admin/authors/new" method="POST" className="w-1/2 space-y-6">
-                <Input name="name" label="Name" required />
-                <TextArea name="about" label="About" required rows={6} />
-                <Input name="profilePic" label="Profile Picture" />
-                <Input name="website" label="Website" />
+            <form action="/api/admin/series/new" method="POST" className="w-1/2 space-y-6">
+                <Input name="title" label="Title" required />
+                <TextArea name="description" label="Description" required rows={6} />
+                <Input name="coverUrl" label="Cover URL" />
+                <CheckBox name="status" label="Publish" />
                 <Input name="slug" label="Slug" required />
+                <Input name="tags" label="Tags" required />
 
                 <button
                     type="submit"
@@ -27,4 +28,4 @@ const NewAuthor: NextPage = () => {
     );
 };
 
-export default NewAuthor;
+export default NewSeries;

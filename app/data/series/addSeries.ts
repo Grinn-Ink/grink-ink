@@ -1,5 +1,5 @@
-import { Series } from '@prisma/client';
 import { getDb } from '../getDb';
+import { NewSeries } from './types';
 
 export async function addSeries({
     description,
@@ -8,7 +8,7 @@ export async function addSeries({
     status,
     tags,
     title
-}: Series) {
+}: NewSeries) {
     const db = getDb();
 
     return await db.series.create({

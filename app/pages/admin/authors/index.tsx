@@ -1,3 +1,4 @@
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { GetServerSideProps, NextPage } from 'next';
 import { AdminLayout, Table } from '../../../components';
 import { Author, getAuthors } from '../../../data';
@@ -6,15 +7,17 @@ interface Properties {
     authors: Author[];
 }
 
-export const getServerSideProps: GetServerSideProps<Properties> = async () => {
-    const authors: Author[] = await getAuthors();
+export const getServerSideProps: GetServerSideProps<Properties> = withPageAuthRequired({
+    getServerSideProps: async () => {
+        const authors: Author[] = await getAuthors();
 
-    return {
-        props: {
-            authors: JSON.parse(JSON.stringify(authors))
-        }
-    };
-}
+        return {
+            props: {
+                authors: JSON.parse(JSON.stringify(authors))
+            }
+        };
+    }
+});
 
 const Authors: NextPage<Properties> = ({ authors }: Properties) => {
     return (
@@ -32,4 +35,4 @@ const Authors: NextPage<Properties> = ({ authors }: Properties) => {
     );
 };
 
-export default Authors
+export default Authors;
