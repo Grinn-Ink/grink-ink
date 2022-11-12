@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "cockroachdb"
+    url      = env("DATABASE_URL")
+}
+
+model Series {
+    id          Int         @id @default(sequence())
+    title       String      @unique
+    description String
+    coverUrl    String
+    status      Boolean     @default(false)
+    tags        String[]
+    slug        String      @unique
+    authors     Author[]
+    issues      Issue[]
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @default(now())
+    publishedAt DateTime?   @default(now())
+
+    @@index(fields: [createdAt(sort: Desc)])
+    @@index(fields: [title(sort: Asc)])
+}
+
+model Issue {
+    id          Int         @id @default(sequence())
+    title       String
+    description String
+    imageUrl    String
+    status      Boolean     @default(false)
+    order       Float
+    tags        String[]
+    slug        String      @unique
+    authors     Author[]
+    series      Series      @relation(fields: [seriesId], references: [id])
+    seriesId    Int
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @default(now())
+    publishedAt DateTime?   @default(now())
+
+    @@index(fields: [order(sort: Asc)])
+    @@index(fields: [createdAt(sort: Desc)])
+    @@index(fields: [title(sort: Asc)])
+}
+
+model Author {
+    id          Int         @id @default(sequence())
+    name        String
+    about       String
+    profilePic  String?
+    website     String?
+    slug        String      @unique
+    series      Series[]
+    issues      Issue[]
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @default(now())
+
+    @@index(fields: [name(sort: Asc)])
+}

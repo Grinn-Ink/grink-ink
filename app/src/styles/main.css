@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lakki+Reddy&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#__next {
+    @apply flex flex-col flex-grow min-h-full text-slate-900;
+}
+
+.font-lokki-reddit {
+    line-height: initial;
+}
